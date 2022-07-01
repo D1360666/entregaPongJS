@@ -1,9 +1,14 @@
 
+let puntajej1 = 0;
+let puntajej2 = 0;
+puntaje1= document.getElementById("puntaje1");
+puntaje2= document.getElementById("puntaje2");
+
 //Creando Objeto jugador
 (function(){
-    self.Jugador = function(nombre){
+    self.Jugador = function(nombre, puntaje){
         this.nombre = nombre;
-        this.puntaje = 0;
+        this.puntaje = puntaje;
     }
     
    
@@ -18,10 +23,17 @@
         this.game_over = false;
         this.bars =[];
         this.ball = null;
-        this.playing = false;
     }
 
     self.Board.prototype = {
+        get getWidth(){
+            return this.width;
+        },
+
+        get getHeight(){
+            return this.height;
+        },
+        
         get elements(){
             let elements = this.bars.map(function(bar){ return bar; }); 
             elements.push(this.ball);
@@ -35,22 +47,45 @@
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.board = board;
+        this.speed = 3;
         this.speed_y = 0;
         this.speed_x = 3;
-        this.board = board;
+        this.kind = "circle";
         this.direction = 1;
         this.bounce_angle = 0;
         this.max_bounce_angle = Math.PI / 12;
-        this.speed = 3;
-
         board.ball = this;
-        this.kind = "circle";
+        
     }
     
     self.Ball.prototype = {
         move: function(){
             this.x += (this.speed_x * this.direction);
             this.y += (this.speed_y);
+
+            if(this.y + this.radius > this.board.getHeight ||
+                this.y + this.radius <= 20){
+                    this.speed_y = -this.speed_y;
+            }
+            if(this.x + this.radius < 0){
+                //ACA va puntaje para el j2
+                puntaje2.innerHTML = ++puntajej2;
+
+                if(puntajej2==5){
+                    //TO:DO crear funciones
+                    resetPuntajes();
+                    ganador("Jugador 2");
+                }
+                resetearBola(this);
+            }else if(this.x + this.radius > this.board.getWidth){
+                puntaje1.innerHTML = ++puntajej1;
+                if(puntajej1==5){
+                    resetPuntajes();
+                    ganador("Jugador 1");
+                }
+                resetearBola(this);
+            }
         },
         get width(){
             return this.radius * 2;
@@ -77,7 +112,21 @@
         }
     }
 }) ();
+function resetearBola(){
+    ball.x = ball.board.getWidth/2;
+    ball.y = ball.board.getHeight/2;
+    ball.speed = 5;
+    ball.speed_x = -ball.speed_x;
+}
+function resetPuntajes(ball){
+    puntaje1.innerHTML=0;
+    puntaje2.innerHTML=0;
+    
+}
 
+function ganador(ganador){
+    alert("El ganador es: " + ganador);
+}
 (function(){
     //Se crea la clase Bar
     self.Bar = function(x, y, width, height, board){
@@ -236,7 +285,7 @@ function confirmar(){
     if(j1.value==="" || j2.value===""){
         alert("Debe ingresar dos jugadores");
     }else{
-        player1.nombre= j1.value;
+        player1.setnombre= j1.value;
         player2.nombre= j2.value;
 
         document.getElementById("nameJ1").value=player1.nombre;
