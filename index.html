@@ -5,15 +5,40 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Ping Pong</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <style>
-        canvas{border:solid;}
 
-    </style>
-    
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Ping Pong para Sofka</h1>
-    <canvas id="canvas"></canvas>
+    <div>
+        <h1>Ping Pong para Sofka</h1>
+        <div id="frmInicio" name="frmInicio">
+                <h2>Ingrese nombre de los jugadores</h2>
+                <input type="text" class="textbox" placeholder="Nombre Jugador 1">
+                <input type="text" class="textbox" placeholder="Nombre Jugador 2">
+                <button id="btnConfirmar" onclick="confirmar();">Iniciar</button>
+                
+            
+        </div>
+    </div>
+    
+    <div id="jugador1" class="column">
+        <h2>Jugador 1</h2>
+        <h3 id="nameJ1">Nombre</h3>
+        <p id="puntaje1" >
+            
+        </p>
+    </div>
+    <div id="tablero" class="tablero">
+        <canvas id="canvas"></canvas>
+    </div>
+    
+    <div id="jugador2" class="column">
+        <h2>Jugador 2</h2>
+        <h3 id="nameJ2">Nombre</h3>
+        <p id="puntaje2">
+
+        </p>
+    </div>
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

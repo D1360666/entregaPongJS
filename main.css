@@ -1,0 +1,39 @@
+body{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    font-family: sans-serif;
+}
+h1{
+    color:floralwhite;
+    font-weight: bold;
+}
+h2{
+    color:blanchedalmond;
+    font-weight: bold;
+}
+.column {
+    font-weight: bold;
+    color: azure;
+    float: left;
+    /*width: 33.33%;*/
+    width: 15%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  .column :hover{
+    transform: scale(1.2);
+    color: bisque;
+  }
+  .tablero{
+    float: left;
+    width: 60%;
+    padding: 10px;
+    height: 400px;
+    background-color: #333;
+  }
+canvas{border:solid;}
+.textbox{
+    border-radius: 10px;
+    height: 30px;
+    width: 250px;
+}
