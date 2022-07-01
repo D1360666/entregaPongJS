@@ -4,18 +4,29 @@ let puntajej2 = 0;
 puntaje1= document.getElementById("puntaje1");
 puntaje2= document.getElementById("puntaje2");
 
-//Creando Objeto jugador
+//Creando Clase jugador
 (function(){
     self.Jugador = function(nombre, puntaje){
         this.nombre = nombre;
         this.puntaje = puntaje;
     }
-    
-   
-
+    self.Jugador.prototype={
+        set setNombre(value){
+            this.nombre = value;
+        },
+        set setPuntaje(value){
+            this.puntaje = value;
+        },
+        get getNombre(){
+            return this.nombre;
+        },
+        get getPuntaje(){
+            return this.puntaje;
+        }
+    }  
 })();
+//Creación de clase Board (tablero)
 (function(){
-
     self.Board = function(width, height) {
         this.width = width;
         this.height = height;
@@ -42,6 +53,7 @@ puntaje2= document.getElementById("puntaje2");
     }
 }) ();
 
+//Creación de clase Ball (bola que se utilizará para jugar)
 (function(){
     self.Ball = function(x, y, radius, board){
         this.x = x;
@@ -73,7 +85,6 @@ puntaje2= document.getElementById("puntaje2");
                 puntaje2.innerHTML = ++puntajej2;
 
                 if(puntajej2==5){
-                    //TO:DO crear funciones
                     resetPuntajes();
                     ganador("Jugador 2");
                 }
@@ -125,7 +136,13 @@ function resetPuntajes(ball){
 }
 
 function ganador(ganador){
-    alert("El ganador es: " + ganador);
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'El ganador es: ' + ganador,
+        showConfirmButton: false,
+        timer: 1500
+    })
 }
 (function(){
     //Se crea la clase Bar
@@ -283,7 +300,13 @@ function confirmar(){
     
     
     if(j1.value==="" || j2.value===""){
-        alert("Debe ingresar dos jugadores");
+        //alert("Debe ingresar dos jugadores");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Debe ingresar dos jugadores',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
     }else{
         player1.setnombre= j1.value;
         player2.nombre= j2.value;
@@ -292,6 +315,13 @@ function confirmar(){
         document.getElementById("nameJ2").value=player2.nombre;
         document.getElementById("puntaje1").value=player1.puntaje;
         document.getElementById("puntaje2").value=player2.puntaje;
-        alert("Que comience el juego");
+         
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Que comience el juego!',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 }
