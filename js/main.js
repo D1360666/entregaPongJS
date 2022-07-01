@@ -290,7 +290,7 @@ document.addEventListener("keydown", function(e){
     }
     else if (e.keyCode === 32){
         e.preventDefault();
-        board.playing = !board.playing;
+       // board.playing = !board.playing;
     }
 });
 
@@ -331,7 +331,7 @@ function confirmar(){
         document.getElementById("nameJ2").innerHTML=player2.getNombre;
         document.getElementById("puntaje1").innerHTML=player1.getPuntaje;
         document.getElementById("puntaje2").innerHTML=player2.getPuntaje;
-         
+        
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -339,5 +339,7 @@ function confirmar(){
             showConfirmButton: false,
             timer: 1500
         })
+
+        board.playing = !board.playing;
     }
 }
