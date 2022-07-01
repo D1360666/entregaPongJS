@@ -1,4 +1,14 @@
 
+//Creando Objeto jugador
+(function(){
+    self.Jugador = function(nombre){
+        this.nombre = nombre;
+        this.puntaje = 0;
+    }
+    
+   
+
+})();
 (function(){
 
     self.Board = function(width, height) {
@@ -181,7 +191,8 @@ let bar2 = new Bar(735, 100, 40, 100, board);
 let canvas = document.getElementById("canvas");
 let board_view = new BoardView(canvas, board);
 let ball = new Ball(350, 100, 10, board);
-
+let player1 = new Jugador("-");
+let player2 = new Jugador("-");
 
 document.addEventListener("keydown", function(e){
     
@@ -214,9 +225,24 @@ function controller(){
     
     self.requestAnimationFrame(controller);
 
+
 }
 
-function frmIniciar(){
-    alert("hola");
-    document.getElementById("frmIncio").style.display= visible;
+function confirmar(){
+    j1 = document.getElementById("txtJ1");
+    j2 = document.getElementById("txtJ2");
+    
+    
+    if(j1.value==="" || j2.value===""){
+        alert("Debe ingresar dos jugadores");
+    }else{
+        player1.nombre= j1.value;
+        player2.nombre= j2.value;
+
+        document.getElementById("nameJ1").value=player1.nombre;
+        document.getElementById("nameJ2").value=player2.nombre;
+        document.getElementById("puntaje1").value=player1.puntaje;
+        document.getElementById("puntaje2").value=player2.puntaje;
+        alert("Que comience el juego");
+    }
 }
