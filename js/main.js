@@ -91,20 +91,17 @@ puntaje2= document.getElementById("puntaje2");
                 }*/
                 if(player2.getPuntaje==5){
                     resetPuntajes();
-                    ganador("Jugador 2");
+                    ganador(player2);
                 }
                 resetearBola(this);
             }else if(this.x + this.radius > this.board.getWidth){
                 //puntaje1.innerHTML = ++puntajej1;
                 player1.setPuntaje = ++player1.getPuntaje;
                 puntaje1.innerHTML = player1.getPuntaje;
-                /*if(puntajej1==5){
-                    resetPuntajes();
-                    ganador("Jugador 1");
-                }*/
+       
                 if(player1.getPuntaje==5){
                     resetPuntajes();
-                    ganador("Jugador 1");
+                    ganador(player1);
                 }
                 resetearBola(this);
             }
@@ -143,12 +140,15 @@ function resetearBola(){
 function resetPuntajes(ball){
     puntaje1.innerHTML=0;
     puntaje2.innerHTML=0;
+    player1.setPuntaje=0;
+    player2.setPuntaje=0;
+    board.playing = !board.playing;
     
 }
 
-function ganador(ganador){
+function ganador(jugador){
     Swal.fire({
-        title: 'Felicitaciones ' + ganador +', has ganado la partida.',
+        title: 'Felicitaciones ' + jugador.getNombre +', has ganado la partida.',
         showClass: {
           popup: 'animate__animated animate__fadeInDown'
         },
