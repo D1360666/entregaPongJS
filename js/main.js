@@ -82,16 +82,27 @@ puntaje2= document.getElementById("puntaje2");
             }
             if(this.x + this.radius < 0){
                 //ACA va puntaje para el j2
-                puntaje2.innerHTML = ++puntajej2;
+                player2.setPuntaje = ++player2.getPuntaje;
+                puntaje2.innerHTML = player2.getPuntaje;
 
-                if(puntajej2==5){
+             /*   if(puntajej2==5){
+                    resetPuntajes();
+                    ganador("Jugador 2");
+                }*/
+                if(player2.getPuntaje==5){
                     resetPuntajes();
                     ganador("Jugador 2");
                 }
                 resetearBola(this);
             }else if(this.x + this.radius > this.board.getWidth){
-                puntaje1.innerHTML = ++puntajej1;
-                if(puntajej1==5){
+                //puntaje1.innerHTML = ++puntajej1;
+                player1.setPuntaje = ++player1.getPuntaje;
+                puntaje1.innerHTML = player1.getPuntaje;
+                /*if(puntajej1==5){
+                    resetPuntajes();
+                    ganador("Jugador 1");
+                }*/
+                if(player1.getPuntaje==5){
                     resetPuntajes();
                     ganador("Jugador 1");
                 }
@@ -137,12 +148,14 @@ function resetPuntajes(ball){
 
 function ganador(ganador){
     Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'El ganador es: ' + ganador,
-        showConfirmButton: false,
-        timer: 1500
-    })
+        title: 'Felicitaciones ' + ganador +', has ganado la partida.',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
 }
 (function(){
     //Se crea la clase Bar
@@ -305,16 +318,19 @@ function confirmar(){
             title: 'Error!',
             text: 'Debe ingresar dos jugadores',
             icon: 'error',
-            confirmButtonText: 'Cool'
+            confirmButtonText: 'Ok'
           })
     }else{
-        player1.setnombre= j1.value;
-        player2.nombre= j2.value;
+        player1.setNombre= j1.value;
+        player1.setPuntaje= 0;
+        player2.setNombre= j2.value;
+        player2.setPuntaje= 0;
 
-        document.getElementById("nameJ1").value=player1.nombre;
-        document.getElementById("nameJ2").value=player2.nombre;
-        document.getElementById("puntaje1").value=player1.puntaje;
-        document.getElementById("puntaje2").value=player2.puntaje;
+        alert(player1.getNombre + player2.getNombre)
+        document.getElementById("nameJ1").innerHTML=player1.getNombre;
+        document.getElementById("nameJ2").innerHTML=player2.getNombre;
+        document.getElementById("puntaje1").innerHTML=player1.getPuntaje;
+        document.getElementById("puntaje2").innerHTML=player2.getPuntaje;
          
         Swal.fire({
             position: 'top-end',
