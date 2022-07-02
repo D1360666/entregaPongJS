@@ -143,6 +143,16 @@ function resetPuntajes(ball){
     player1.setPuntaje=0;
     player2.setPuntaje=0;
     board.playing = !board.playing;
+    //x, y, width, height, board
+    bar1.x=20;
+    bar1.y=100;
+    bar1.width=40;
+    bar1.height=100;
+    bar2.x=735;
+    bar2.y=100;
+    bar2.width=40;
+    bar2.height=100;
+    
     
 }
 
@@ -157,8 +167,8 @@ function ganador(jugador){
         }
       })
 }
+//Se crea la clase Bar
 (function(){
-    //Se crea la clase Bar
     self.Bar = function(x, y, width, height, board){
         this.x = x;
         this.y = y;
@@ -290,7 +300,7 @@ document.addEventListener("keydown", function(e){
     }
     else if (e.keyCode === 32){
         e.preventDefault();
-       // board.playing = !board.playing;
+       
     }
 });
 
@@ -313,7 +323,7 @@ function confirmar(){
     
     
     if(j1.value==="" || j2.value===""){
-        //alert("Debe ingresar dos jugadores");
+        
         Swal.fire({
             title: 'Error!',
             text: 'Debe ingresar dos jugadores',
@@ -326,7 +336,6 @@ function confirmar(){
         player2.setNombre= j2.value;
         player2.setPuntaje= 0;
 
-        alert(player1.getNombre + player2.getNombre)
         document.getElementById("nameJ1").innerHTML=player1.getNombre;
         document.getElementById("nameJ2").innerHTML=player2.getNombre;
         document.getElementById("puntaje1").innerHTML=player1.getPuntaje;
@@ -337,7 +346,7 @@ function confirmar(){
             icon: 'success',
             title: 'Que comience el juego!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1000
         })
 
         board.playing = !board.playing;
